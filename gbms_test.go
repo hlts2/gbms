@@ -39,6 +39,16 @@ func TestSearch(t *testing.T) {
 				ptn string
 			}{
 				str: "Lil",
+				ptn: "Lil",
+			},
+			expected: 1,
+		},
+		{
+			input: struct {
+				str string
+				ptn string
+			}{
+				str: "Lil",
 				ptn: "y",
 			},
 			expected: 0,
