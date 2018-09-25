@@ -9,11 +9,6 @@ func Search(str, ptn string) int {
 	return 0
 }
 
-// toBytes convert string to bytes
-func toBytes(str string) []byte {
-	return *(*[]byte)(unsafe.Pointer(&str))
-}
-
 func skipTable(str, ptn []byte) map[byte]int {
 	table := make(map[byte]int, len(str))
 	for i := 0; i < len(str); i++ {
@@ -27,4 +22,9 @@ func skipTable(str, ptn []byte) map[byte]int {
 		table[str[i]] = j
 	}
 	return table
+}
+
+// toBytes convert string to bytes
+func toBytes(str string) []byte {
+	return *(*[]byte)(unsafe.Pointer(&str))
 }
