@@ -70,7 +70,7 @@ func TestBmsTable(t *testing.T) {
 	}
 
 	for i, test := range tests {
-		got := bmsTable(test.input.str, test.input.ptn)
+		got := skipTable(test.input.str, test.input.ptn)
 
 		if !reflect.DeepEqual(test.expected, got) {
 			t.Errorf("tests[%d] - bmsTable is wrong. expected: %v, got: %v", i, test.expected, got)
