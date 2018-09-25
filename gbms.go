@@ -18,19 +18,20 @@ func Search(str, ptn string) int {
 	i := 0
 	for i < len(bStr)-len(bPath)+1 {
 		j := len(bPath) - 1
-		for j >= 0 && bStr[j+i] == bPath[j] {
+		for j >= 0 && bStr[i+j] == bPath[j] {
 			j--
 		}
 
 		if j == -1 {
 			matchedCnt++
 			i++
-		} else if table[bStr[i+j]] < j {
-			i = i + (j - table[bStr[i+j]])
+		} else if pos := table[bStr[i+j]]; pos < j {
+			i = i + (j - pos)
 		} else {
 			i++
 		}
 	}
+
 	return matchedCnt
 }
 
