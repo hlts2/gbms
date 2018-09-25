@@ -2,7 +2,7 @@ package gbms
 
 import "unsafe"
 
-// Search Searches a needle in a haystack and returns count of needle
+// Search Searches a pattern in a text and returns count of pattern
 func Search(str, ptn string) int {
 	return 0
 }
