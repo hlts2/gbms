@@ -7,7 +7,3 @@ func assert(t *testing.T, b bool) {
 		t.Fail()
 	}
 }
-
-func TestSearchWithBasic(t *testing.T) {
-
-}
