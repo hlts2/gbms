@@ -45,6 +45,23 @@ func BenchmarkBasicPattern(b *testing.B) {
 	}
 }
 
+func BenchmarkGbms(b *testing.B) {
+	var (
+		str      = "lillillillilittlellllillillittle"
+		ptn      = "little"
+		expected = 2
+	)
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		got := Search(str, ptn)
+		if expected != got {
+			b.Errorf("gbms.Search is wrong. expected: %v, got: %v", expected, got)
+		}
+	}
+}
+
 func BenchmarkBms(b *testing.B) {
 	var (
 		str      = "lillillillilittlellllillillittle"
@@ -57,7 +74,7 @@ func BenchmarkBms(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		got := bms.Search(str, ptn)
 		if expected != got {
-			b.Errorf("SearchWithBasic is wrong. expected: %v, got: %v", expected, got)
+			b.Errorf("bms.SearchWithBasic is wrong. expected: %v, got: %v", expected, got)
 		}
 	}
 }
