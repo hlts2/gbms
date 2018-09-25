@@ -7,6 +7,7 @@ func Search(str, ptn string) int {
 	return 0
 }
 
-func toBytes(str1, str2 string) ([]byte, []byte) {
-	return *(*[]byte)(unsafe.Pointer(&str1)), *(*[]byte)(unsafe.Pointer(&str2))
+// toBytes convert string to bytes
+func toBytes(str string) []byte {
+	return *(*[]byte)(unsafe.Pointer(&str))
 }

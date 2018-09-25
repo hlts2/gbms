@@ -7,7 +7,7 @@ import (
 )
 
 func SearchWithBasic(str, ptn string) int {
-	bStr, bPtn := toBytes(str, ptn)
+	bStr, bPtn := toBytes(str), toBytes(ptn)
 
 	matchedCnt := 0
 
