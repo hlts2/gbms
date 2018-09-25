@@ -1,31 +1,27 @@
 package gbms
 
-import (
-	"unsafe"
-)
-
 // Search searches a pattern in a text and returns count of pattern
 func Search(str, ptn string) int {
 	if len(str) == 0 || len(ptn) == 0 {
 		return 0
 	}
 
-	bStr, bPath := toBytes(str), toBytes(ptn)
-	table := skipTable(bStr, bPath)
+	rStr, rPath := []rune(str), []rune(ptn)
+	table := skipTable(rStr, rPath)
 
 	matchedCnt := 0
 
 	i := 0
-	for i < len(bStr)-len(bPath)+1 {
-		j := len(bPath) - 1
-		for j >= 0 && bStr[i+j] == bPath[j] {
+	for i < len(rStr)-len(rPath)+1 {
+		j := len(rPath) - 1
+		for j >= 0 && rStr[i+j] == rPath[j] {
 			j--
 		}
 
 		if j == -1 {
 			matchedCnt++
 			i++
-		} else if pos := table[bStr[i+j]]; pos < j {
+		} else if pos := table[rStr[i+j]]; pos < j {
 			i = i + (j - pos)
 		} else {
 			i++
@@ -35,8 +31,8 @@ func Search(str, ptn string) int {
 	return matchedCnt
 }
 
-func skipTable(str, ptn []byte) map[byte]int {
-	table := make(map[byte]int, len(str))
+func skipTable(str, ptn []rune) map[rune]int {
+	table := make(map[rune]int, len(str))
 	for i := 0; i < len(str); i++ {
 		j := len(ptn) - 1
 		for j >= 0 {
@@ -48,9 +44,4 @@ func skipTable(str, ptn []byte) map[byte]int {
 		table[str[i]] = j
 	}
 	return table
-}
-
-// toBytes convert string to bytes
-func toBytes(str string) []byte {
-	return *(*[]byte)(unsafe.Pointer(&str))
 }

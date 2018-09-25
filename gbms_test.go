@@ -76,20 +76,20 @@ func TestSearch(t *testing.T) {
 func TestBmsTable(t *testing.T) {
 	tests := []struct {
 		input struct {
-			str []byte
-			ptn []byte
+			str []rune
+			ptn []rune
 		}
-		expected map[byte]int
+		expected map[rune]int
 	}{
 		{
 			input: struct {
-				str []byte
-				ptn []byte
+				str []rune
+				ptn []rune
 			}{
-				str: []byte("Lil and Tiny"),
-				ptn: []byte("Tiny"),
+				str: []rune("Lil and Tiny"),
+				ptn: []rune("Tiny"),
 			},
-			expected: map[byte]int{
+			expected: map[rune]int{
 				'L': -1, 'i': 1, 'l': -1, ' ': -1,
 				'a': -1, 'n': 2, 'd': -1,
 				'T': 0, 'y': 3,
@@ -97,35 +97,35 @@ func TestBmsTable(t *testing.T) {
 		},
 		{
 			input: struct {
-				str []byte
-				ptn []byte
+				str []rune
+				ptn []rune
 			}{
-				str: []byte("Lil"),
-				ptn: []byte("l"),
+				str: []rune("Lil"),
+				ptn: []rune("l"),
 			},
-			expected: map[byte]int{
+			expected: map[rune]int{
 				'L': -1, 'i': -1, 'l': 0,
 			},
 		},
 		{
 			input: struct {
-				str []byte
-				ptn []byte
+				str []rune
+				ptn []rune
 			}{
-				str: []byte(""),
-				ptn: []byte(""),
+				str: []rune(""),
+				ptn: []rune(""),
 			},
-			expected: map[byte]int{},
+			expected: map[rune]int{},
 		},
 		{
 			input: struct {
-				str []byte
-				ptn []byte
+				str []rune
+				ptn []rune
 			}{
-				str: []byte("a"),
-				ptn: []byte("abc"),
+				str: []rune("a"),
+				ptn: []rune("abc"),
 			},
-			expected: map[byte]int{
+			expected: map[rune]int{
 				'a': 0,
 			},
 		},
@@ -136,40 +136,6 @@ func TestBmsTable(t *testing.T) {
 
 		if !reflect.DeepEqual(test.expected, got) {
 			t.Errorf("tests[%d] - bmsTable is wrong. expected: %v, got: %v", i, test.expected, got)
-		}
-	}
-}
-
-func TestToBytes(t *testing.T) {
-	tests := []struct {
-		input struct {
-			str string
-		}
-		expected []byte
-	}{
-		{
-			input: struct {
-				str string
-			}{
-				str: "lil",
-			},
-			expected: []byte("lil"),
-		},
-		{
-			input: struct {
-				str string
-			}{
-				str: "",
-			},
-			expected: []byte(""),
-		},
-	}
-
-	for i, test := range tests {
-		got := toBytes(test.input.str)
-
-		if !reflect.DeepEqual(test.expected, got) {
-			t.Errorf("tests[%d] - toBytes is wrong. expected: %v, got: %v", i, test.expected, got)
 		}
 	}
 }
