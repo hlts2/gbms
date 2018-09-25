@@ -77,3 +77,37 @@ func TestBmsTable(t *testing.T) {
 		}
 	}
 }
+
+func TestToBytes(t *testing.T) {
+	tests := []struct {
+		input struct {
+			str string
+		}
+		expected []byte
+	}{
+		{
+			input: struct {
+				str string
+			}{
+				str: "lil",
+			},
+			expected: []byte("lil"),
+		},
+		{
+			input: struct {
+				str string
+			}{
+				str: "",
+			},
+			expected: []byte(""),
+		},
+	}
+
+	for i, test := range tests {
+		got := toBytes(test.input.str)
+
+		if !reflect.DeepEqual(test.expected, got) {
+			t.Errorf("tests[%d] - toBytes is wrong. expected: %v, got: %v", i, test.expected, got)
+		}
+	}
+}
