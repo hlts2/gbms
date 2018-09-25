@@ -5,12 +5,74 @@ import (
 	"testing"
 )
 
-func assert(t *testing.T, b bool) {
-	if !b {
-		t.Fail()
+func TestSearch(t *testing.T) {
+	tests := []struct {
+		input struct {
+			str string
+			ptn string
+		}
+		expected int
+	}{
+		{
+			input: struct {
+				str string
+				ptn string
+			}{
+				str: "Lil and Tiny",
+				ptn: "Tiny",
+			},
+			expected: 1,
+		},
+		{
+			input: struct {
+				str string
+				ptn string
+			}{
+				str: "Lil and Tiny and Tiny",
+				ptn: "Ti",
+			},
+			expected: 2,
+		},
+		{
+			input: struct {
+				str string
+				ptn string
+			}{
+				str: "Lil",
+				ptn: "y",
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str string
+				ptn string
+			}{
+				str: "",
+				ptn: "",
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str string
+				ptn string
+			}{
+				str: "",
+				ptn: "ti",
+			},
+			expected: 0,
+		},
+	}
+
+	for i, test := range tests {
+		got := Search(test.input.str, test.input.ptn)
+
+		if test.expected != got {
+			t.Errorf("tests[%d] - Search is wrong. expected: %v, got: %v", i, test.expected, got)
+		}
 	}
 }
-
 func TestBmsTable(t *testing.T) {
 	tests := []struct {
 		input struct {
