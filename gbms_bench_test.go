@@ -78,3 +78,16 @@ func BenchmarkBms(b *testing.B) {
 		}
 	}
 }
+
+func BenchmarkSkip(b *testing.B) {
+	var (
+		str = []rune("lillillillilittlellllillillittle")
+		ptn = []rune("little")
+	)
+
+	b.ResetTimer()
+
+	for i := 0; i < b.N; i++ {
+		_ = skipTable(str, ptn)
+	}
+}

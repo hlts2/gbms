@@ -32,7 +32,7 @@ func Search(str, ptn string) int {
 }
 
 func skipTable(str, ptn []rune) map[rune]int {
-	table := make(map[rune]int, len(str))
+	table := make(map[rune]int)
 	for i := 0; i < len(str); i++ {
 		j := len(ptn) - 1
 		for j >= 0 {
@@ -41,7 +41,10 @@ func skipTable(str, ptn []rune) map[rune]int {
 			}
 			j--
 		}
-		table[str[i]] = j
+
+		if _, ok := table[str[i]]; !ok {
+			table[str[i]] = j
+		}
 	}
 	return table
 }
