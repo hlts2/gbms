@@ -4,7 +4,7 @@ import (
 	"testing"
 )
 
-func TestSearchByBasic(t *testing.T) {
+func TestSearchByBasicAlgo(t *testing.T) {
 	tests := []struct {
 		input struct {
 			str []rune
@@ -63,7 +63,7 @@ func TestSearchByBasic(t *testing.T) {
 	}
 }
 
-func TestSearchByBms(t *testing.T) {
+func TestSearchByBmsAlgo(t *testing.T) {
 	tests := []struct {
 		input struct {
 			str []rune
