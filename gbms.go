@@ -1,6 +1,6 @@
 package gbms
 
-// Search searches a pattern in a text and returns count of pattern
+// Search searches a pattern in a str and returns count of pattern
 func Search(str, ptn string) int {
 	if len(str) == 0 || len(ptn) == 0 {
 		return 0
