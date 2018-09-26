@@ -17,13 +17,13 @@ Dx7FN85rE4gzVMPYe_yKFzQzdtQz659i3-T7xNakVZjN3VDj9k7tJLyiBc_pS88xmVfX4iLteSUMXFR7
 )
 
 func BenchmarkBmsAlgOfGbms(b *testing.B) {
-	rStr := []rune(str)
-	rPtn := []rune(ptn)
+	bStr := []byte(str)
+	bPtn := []byte(ptn)
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		got := searchByBmsAlgo(rStr, rPtn)
+		got := searchByBmsAlgo(bStr, bPtn)
 		if expected != got {
 			b.Errorf("gbms.searchByBmsAlgo is wrong. expected: %v, got: %v", expected, got)
 		}
@@ -31,13 +31,13 @@ func BenchmarkBmsAlgOfGbms(b *testing.B) {
 }
 
 func BenchmarkBasicAlgOfGbms(b *testing.B) {
-	rStr := []rune(str)
-	rPtn := []rune(ptn)
+	bStr := []byte(str)
+	bPtn := []byte(ptn)
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		got := searchByBasicAlgo(rStr, rPtn)
+		got := searchByBasicAlgo(bStr, bPtn)
 		if expected != got {
 			b.Errorf("gbms.searchByBasicAlgo is wrong. expected: %v, got: %v", expected, got)
 		}

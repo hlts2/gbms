@@ -1,84 +1,82 @@
 package gbms
 
-import (
-	"testing"
-)
+import "testing"
 
 func TestSearchByBasicAlgo(t *testing.T) {
 	tests := []struct {
 		input struct {
-			str []rune
-			ptn []rune
+			str []byte
+			ptn []byte
 		}
 		expected int
 	}{
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil and Tiny"),
-				ptn: []rune("Tiny"),
+				str: []byte("Lil and Tiny"),
+				ptn: []byte("Tiny"),
 			},
 			expected: 1,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil and Tiny and Tiny"),
-				ptn: []rune("Ti"),
+				str: []byte("Lil and Tiny and Tiny"),
+				ptn: []byte("Ti"),
 			},
 			expected: 2,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil"),
-				ptn: []rune("Lil"),
+				str: []byte("Lil"),
+				ptn: []byte("Lil"),
 			},
 			expected: 1,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil"),
-				ptn: []rune("y"),
+				str: []byte("Lil"),
+				ptn: []byte("y"),
 			},
 			expected: 0,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune(""),
-				ptn: []rune(""),
+				str: []byte(""),
+				ptn: []byte(""),
 			},
 			expected: 0,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("lil"),
-				ptn: []rune(""),
+				str: []byte("lil"),
+				ptn: []byte(""),
 			},
 			expected: 0,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune(""),
-				ptn: []rune("lil"),
+				str: []byte(""),
+				ptn: []byte("lil"),
 			},
 			expected: 0,
 		},
@@ -96,78 +94,78 @@ func TestSearchByBasicAlgo(t *testing.T) {
 func TestSearchByBmsAlgo(t *testing.T) {
 	tests := []struct {
 		input struct {
-			str []rune
-			ptn []rune
+			str []byte
+			ptn []byte
 		}
 		expected int
 	}{
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil and Tiny"),
-				ptn: []rune("Tiny"),
+				str: []byte("Lil and Tiny"),
+				ptn: []byte("Tiny"),
 			},
 			expected: 1,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil and Tiny and Tiny"),
-				ptn: []rune("Ti"),
+				str: []byte("Lil and Tiny and Tiny"),
+				ptn: []byte("Ti"),
 			},
 			expected: 2,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil"),
-				ptn: []rune("Lil"),
+				str: []byte("Lil"),
+				ptn: []byte("Lil"),
 			},
 			expected: 1,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("Lil"),
-				ptn: []rune("y"),
+				str: []byte("Lil"),
+				ptn: []byte("y"),
 			},
 			expected: 0,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune(""),
-				ptn: []rune(""),
+				str: []byte(""),
+				ptn: []byte(""),
 			},
 			expected: 0,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune("lil"),
-				ptn: []rune(""),
+				str: []byte("lil"),
+				ptn: []byte(""),
 			},
 			expected: 0,
 		},
 		{
 			input: struct {
-				str []rune
-				ptn []rune
+				str []byte
+				ptn []byte
 			}{
-				str: []rune(""),
-				ptn: []rune("lil"),
+				str: []byte(""),
+				ptn: []byte("lil"),
 			},
 			expected: 0,
 		},
@@ -185,20 +183,20 @@ func TestSearchByBmsAlgo(t *testing.T) {
 // func TestBmsTable(t *testing.T) {
 // 	tests := []struct {
 // 		input struct {
-// 			str []rune
-// 			ptn []rune
+// 			str []byte
+// 			ptn []byte
 // 		}
-// 		expected map[rune]int
+// 		expected map[byte]int
 // 	}{
 // 		{
 // 			input: struct {
-// 				str []rune
-// 				ptn []rune
+// 				str []byte
+// 				ptn []byte
 // 			}{
-// 				str: []rune("Lil and Tiny"),
-// 				ptn: []rune("Tiny"),
+// 				str: []byte("Lil and Tiny"),
+// 				ptn: []byte("Tiny"),
 // 			},
-// 			expected: map[rune]int{
+// 			expected: map[byte]int{
 // 				'L': -1, 'i': 1, 'l': -1, ' ': -1,
 // 				'a': -1, 'n': 2, 'd': -1,
 // 				'T': 0, 'y': 3,
@@ -206,35 +204,35 @@ func TestSearchByBmsAlgo(t *testing.T) {
 // 		},
 // 		{
 // 			input: struct {
-// 				str []rune
-// 				ptn []rune
+// 				str []byte
+// 				ptn []byte
 // 			}{
-// 				str: []rune("Lil"),
-// 				ptn: []rune("l"),
+// 				str: []byte("Lil"),
+// 				ptn: []byte("l"),
 // 			},
-// 			expected: map[rune]int{
+// 			expected: map[byte]int{
 // 				'L': -1, 'i': -1, 'l': 0,
 // 			},
 // 		},
 // 		{
 // 			input: struct {
-// 				str []rune
-// 				ptn []rune
+// 				str []byte
+// 				ptn []byte
 // 			}{
-// 				str: []rune(""),
-// 				ptn: []rune(""),
+// 				str: []byte(""),
+// 				ptn: []byte(""),
 // 			},
-// 			expected: map[rune]int{},
+// 			expected: map[byte]int{},
 // 		},
 // 		{
 // 			input: struct {
-// 				str []rune
-// 				ptn []rune
+// 				str []byte
+// 				ptn []byte
 // 			}{
-// 				str: []rune("a"),
-// 				ptn: []rune("abc"),
+// 				str: []byte("a"),
+// 				ptn: []byte("abc"),
 // 			},
-// 			expected: map[rune]int{
+// 			expected: map[byte]int{
 // 				'a': 0,
 // 			},
 // 		},

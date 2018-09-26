@@ -3,23 +3,23 @@ package gbms
 // Search --
 func Search(str, ptn string) int {
 	// if len(str) < 100 || len(ptn) < 100 { // TODO Adjust threshold
-	// 	return searchByBasicAlgo([]rune(str), []rune(ptn))
+	// 	return searchByBasicAlgo([]byte(str), []byte(ptn))
 	// }
-	return searchByBasicAlgo([]rune(str), []rune(ptn))
+	return searchByBasicAlgo([]byte(str), []byte(ptn))
 }
 
 // SearchByBasic searches a pattern in a str by basic search algorithm and returns count of pattern
-func searchByBasicAlgo(rStr, rPtn []rune) int {
-	if len(rStr) == 0 || len(rPtn) == 0 {
+func searchByBasicAlgo(bStr, bPtn []byte) int {
+	if len(bStr) == 0 || len(bPtn) == 0 {
 		return 0
 	}
 
 	matchedCnt := 0
 
-	for i := 0; i < len(rStr)-len(rPtn)+1; i++ {
+	for i := 0; i < len(bStr)-len(bPtn)+1; i++ {
 		ok := true
-		for j := 0; j < len(rPtn); j++ {
-			if rStr[i+j] != rPtn[j] {
+		for j := 0; j < len(bPtn); j++ {
+			if bStr[i+j] != bPtn[j] {
 				ok = false
 				break
 			}
@@ -34,24 +34,24 @@ func searchByBasicAlgo(rStr, rPtn []rune) int {
 }
 
 // SearchByBms searches a pattern in a str by bms algorithm and returns count of pattern
-func searchByBmsAlgo(rStr, rPtn []rune) int {
-	if len(rStr) == 0 || len(rPtn) == 0 {
+func searchByBmsAlgo(bStr, bPtn []byte) int {
+	if len(bStr) == 0 || len(bPtn) == 0 {
 		return 0
 	}
 
 	matchedCnt := 0
 
 	i := 0
-	for i < len(rStr)-len(rPtn)+1 {
-		j := len(rPtn) - 1
-		for j >= 0 && rStr[i+j] == rPtn[j] {
+	for i < len(bStr)-len(bPtn)+1 {
+		j := len(bPtn) - 1
+		for j >= 0 && bStr[i+j] == bPtn[j] {
 			j--
 		}
 
 		if j == -1 {
 			matchedCnt++
 			i++
-		} else if pos := matchedPos(rStr[i+j], rPtn); pos < j {
+		} else if pos := matchedPos(bStr[i+j], bPtn); pos < j {
 			i = i + (j - pos)
 		} else {
 			i++
@@ -61,7 +61,7 @@ func searchByBmsAlgo(rStr, rPtn []rune) int {
 	return matchedCnt
 }
 
-func matchedPos(char rune, ptn []rune) int {
+func matchedPos(char byte, ptn []byte) int {
 	i := len(ptn) - 1
 	for i >= 0 && char != ptn[i] {
 		i--
