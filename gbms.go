@@ -2,9 +2,9 @@ package gbms
 
 // Search --
 func Search(str, ptn string) int {
-	if len(str) < 100 || len(ptn) < 100 { // TODO Adjust threshold
-		return searchByBasicAlgo([]rune(str), []rune(ptn))
-	}
+	// if len(str) < 100 || len(ptn) < 100 { // TODO Adjust threshold
+	// 	return searchByBasicAlgo([]rune(str), []rune(ptn))
+	// }
 	return searchByBasicAlgo([]rune(str), []rune(ptn))
 }
 
