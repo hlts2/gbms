@@ -7,7 +7,6 @@ func Search(str, ptn string) int {
 	}
 
 	rStr, rPath := []rune(str), []rune(ptn)
-	table := skipTable(rStr, rPath)
 
 	matchedCnt := 0
 
@@ -21,7 +20,7 @@ func Search(str, ptn string) int {
 		if j == -1 {
 			matchedCnt++
 			i++
-		} else if pos := table[rStr[i+j]]; pos < j {
+		} else if pos := matchedPos(rStr[i+j], rPath); pos < j {
 			i = i + (j - pos)
 		} else {
 			i++
@@ -31,19 +30,28 @@ func Search(str, ptn string) int {
 	return matchedCnt
 }
 
-func skipTable(str, ptn []rune) map[rune]int {
-	table := make(map[rune]int)
-	for i := 0; i < len(str); i++ {
-		if _, ok := table[str[i]]; ok {
-			continue
-		}
-
-		j := len(ptn) - 1
-		for j >= 0 && str[i] != ptn[j] {
-			j--
-		}
-
-		table[str[i]] = j
+func matchedPos(char rune, ptn []rune) int {
+	i := len(ptn) - 1
+	for i >= 0 && char != ptn[i] {
+		i--
 	}
-	return table
+
+	return i
 }
+
+// func skipTable(str, ptn []rune) map[rune]int {
+// 	table := make(map[rune]int)
+// 	for i := 0; i < len(str); i++ {
+// 		if _, ok := table[str[i]]; ok {
+// 			continue
+// 		}
+//
+// 		j := len(ptn) - 1
+// 		for j >= 0 && str[i] != ptn[j] {
+// 			j--
+// 		}
+//
+// 		table[str[i]] = j
+// 	}
+// 	return table
+// }
