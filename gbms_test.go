@@ -52,6 +52,36 @@ func TestSearchByBasicAlgo(t *testing.T) {
 			},
 			expected: 0,
 		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune(""),
+				ptn: []rune(""),
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune("lil"),
+				ptn: []rune(""),
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune(""),
+				ptn: []rune("lil"),
+			},
+			expected: 0,
+		},
 	}
 
 	for i, test := range tests {
@@ -108,6 +138,36 @@ func TestSearchByBmsAlgo(t *testing.T) {
 			}{
 				str: []rune("Lil"),
 				ptn: []rune("y"),
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune(""),
+				ptn: []rune(""),
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune("lil"),
+				ptn: []rune(""),
+			},
+			expected: 0,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune(""),
+				ptn: []rune("lil"),
 			},
 			expected: 0,
 		},
