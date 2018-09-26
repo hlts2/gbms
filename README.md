@@ -1,2 +1,2 @@
 # gbms
-Boyer-Moore String Search Algorithm
+gbms is Allocation-free Boyer-Moore String Search Algorithm
