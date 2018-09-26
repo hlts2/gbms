@@ -48,7 +48,7 @@ func BenchmarkBms(b *testing.B) {
 	for i := 0; i < b.N; i++ {
 		got := bms.Search(str, ptn)
 		if expected != got {
-			b.Errorf("bms.SearchWithBasic is wrong. expected: %v, got: %v", expected, got)
+			b.Errorf("bms.Search is wrong. expected: %v, got: %v", expected, got)
 		}
 	}
 }
