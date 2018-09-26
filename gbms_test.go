@@ -4,81 +4,120 @@ import (
 	"testing"
 )
 
-func TestSearch(t *testing.T) {
+func TestSearchByBasic(t *testing.T) {
 	tests := []struct {
 		input struct {
-			str string
-			ptn string
+			str []rune
+			ptn []rune
 		}
 		expected int
 	}{
 		{
 			input: struct {
-				str string
-				ptn string
+				str []rune
+				ptn []rune
 			}{
-				str: "Lil and Tiny",
-				ptn: "Tiny",
+				str: []rune("Lil and Tiny"),
+				ptn: []rune("Tiny"),
 			},
 			expected: 1,
 		},
 		{
 			input: struct {
-				str string
-				ptn string
+				str []rune
+				ptn []rune
 			}{
-				str: "Lil and Tiny and Tiny",
-				ptn: "Ti",
+				str: []rune("Lil and Tiny and Tiny"),
+				ptn: []rune("Ti"),
 			},
 			expected: 2,
 		},
 		{
 			input: struct {
-				str string
-				ptn string
+				str []rune
+				ptn []rune
 			}{
-				str: "Lil",
-				ptn: "Lil",
+				str: []rune("Lil"),
+				ptn: []rune("Lil"),
 			},
 			expected: 1,
 		},
 		{
 			input: struct {
-				str string
-				ptn string
+				str []rune
+				ptn []rune
 			}{
-				str: "Lil",
-				ptn: "y",
-			},
-			expected: 0,
-		},
-		{
-			input: struct {
-				str string
-				ptn string
-			}{
-				str: "",
-				ptn: "",
-			},
-			expected: 0,
-		},
-		{
-			input: struct {
-				str string
-				ptn string
-			}{
-				str: "",
-				ptn: "ti",
+				str: []rune("Lil"),
+				ptn: []rune("y"),
 			},
 			expected: 0,
 		},
 	}
 
 	for i, test := range tests {
-		got := Search(test.input.str, test.input.ptn)
+		got := searchByBasicAlgo(test.input.str, test.input.ptn)
 
 		if test.expected != got {
-			t.Errorf("tests[%d] - Search is wrong. expected: %v, got: %v", i, test.expected, got)
+			t.Errorf("tests[%d] - searchByBasic is wrong. expected: %v, got: %v", i, test.expected, got)
+		}
+	}
+}
+
+func TestSearchByBms(t *testing.T) {
+	tests := []struct {
+		input struct {
+			str []rune
+			ptn []rune
+		}
+		expected int
+	}{
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune("Lil and Tiny"),
+				ptn: []rune("Tiny"),
+			},
+			expected: 1,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune("Lil and Tiny and Tiny"),
+				ptn: []rune("Ti"),
+			},
+			expected: 2,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune("Lil"),
+				ptn: []rune("Lil"),
+			},
+			expected: 1,
+		},
+		{
+			input: struct {
+				str []rune
+				ptn []rune
+			}{
+				str: []rune("Lil"),
+				ptn: []rune("y"),
+			},
+			expected: 0,
+		},
+	}
+
+	for i, test := range tests {
+		got := searchByBmsAlgo(test.input.str, test.input.ptn)
+
+		if test.expected != got {
+			t.Errorf("tests[%d] - searchByBms is wrong. expected: %v, got: %v", i, test.expected, got)
 		}
 	}
 }

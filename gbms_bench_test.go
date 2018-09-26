@@ -6,58 +6,19 @@ import (
 	"github.com/cubicdaiya/bms"
 )
 
-func SearchWithBasic(str, ptn string) int {
-	rStr, rPtn := []rune(str), []rune(ptn)
-
-	matchedCnt := 0
-
-	for i := 0; i < len(rStr)-len(rPtn)+1; i++ {
-		ok := true
-		for j := 0; j < len(rPtn); j++ {
-			if rStr[i+j] != rPtn[j] {
-				ok = false
-				break
-			}
-		}
-
-		if ok {
-			matchedCnt++
-		}
-	}
-
-	return matchedCnt
-}
-
-func BenchmarkBasicPattern(b *testing.B) {
+func BenchmarkBmsAlgOfGbms(b *testing.B) {
 	var (
-		str      = "lillillillilittlellllillillittle"
-		ptn      = "little"
+		rStr     = []rune("lillillillilittlellllillillittle")
+		rPtn     = []rune("little")
 		expected = 2
 	)
 
 	b.ResetTimer()
 
 	for i := 0; i < b.N; i++ {
-		got := SearchWithBasic(str, ptn)
+		got := searchByBmsAlgo(rStr, rPtn)
 		if expected != got {
-			b.Errorf("SearchWithBasic is wrong. expected: %v, got: %v", expected, got)
-		}
-	}
-}
-
-func BenchmarkGbms(b *testing.B) {
-	var (
-		str      = "lillillillilittlellllillillittle"
-		ptn      = "little"
-		expected = 2
-	)
-
-	b.ResetTimer()
-
-	for i := 0; i < b.N; i++ {
-		got := Search(str, ptn)
-		if expected != got {
-			b.Errorf("gbms.Search is wrong. expected: %v, got: %v", expected, got)
+			b.Errorf("gbms.searchByBmsAlgo is wrong. expected: %v, got: %v", expected, got)
 		}
 	}
 }

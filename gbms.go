@@ -1,12 +1,43 @@
 package gbms
 
-// Search searches a pattern in a str and returns count of pattern
+// Search --
 func Search(str, ptn string) int {
-	if len(str) == 0 || len(ptn) == 0 {
+	if len(str) < 100 || len(ptn) < 100 { // TODO Adjust threshold
+		return searchByBasicAlgo([]rune(str), []rune(ptn))
+	}
+	return searchByBasicAlgo([]rune(str), []rune(ptn))
+}
+
+// SearchByBasic searches a pattern in a str by basic search algorithm and returns count of pattern
+func searchByBasicAlgo(rStr, rPtn []rune) int {
+	if len(rStr) == 0 || len(rPtn) == 0 {
 		return 0
 	}
 
-	rStr, rPtn := []rune(str), []rune(ptn)
+	matchedCnt := 0
+
+	for i := 0; i < len(rStr)-len(rPtn)+1; i++ {
+		ok := true
+		for j := 0; j < len(rPtn); j++ {
+			if rStr[i+j] != rPtn[j] {
+				ok = false
+				break
+			}
+		}
+
+		if ok {
+			matchedCnt++
+		}
+	}
+
+	return matchedCnt
+}
+
+// SearchByBms searches a pattern in a str by bms algorithm and returns count of pattern
+func searchByBmsAlgo(rStr, rPtn []rune) int {
+	if len(rStr) == 0 || len(rPtn) == 0 {
+		return 0
+	}
 
 	matchedCnt := 0
 
