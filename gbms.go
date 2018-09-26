@@ -50,7 +50,7 @@ func searchByBmsAlgo(bStr, bPtn []byte) int {
 
 		if j == -1 {
 			matchedCnt++
-			i++
+			i = i + len(bPtn)
 		} else if pos := matchedPos(bStr[i+j], bPtn); pos < j {
 			i = i + (j - pos)
 		} else {
