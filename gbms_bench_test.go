@@ -7,14 +7,14 @@ import (
 )
 
 func SearchWithBasic(str, ptn string) int {
-	rStr, rPath := []rune(str), []rune(ptn)
+	rStr, rPtn := []rune(str), []rune(ptn)
 
 	matchedCnt := 0
 
-	for i := 0; i < len(rStr)-len(rPath)+1; i++ {
+	for i := 0; i < len(rStr)-len(rPtn)+1; i++ {
 		ok := true
-		for j := 0; j < len(rPath); j++ {
-			if rStr[i+j] != rPath[j] {
+		for j := 0; j < len(rPtn); j++ {
+			if rStr[i+j] != rPtn[j] {
 				ok = false
 				break
 			}

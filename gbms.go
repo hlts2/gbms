@@ -6,21 +6,21 @@ func Search(str, ptn string) int {
 		return 0
 	}
 
-	rStr, rPath := []rune(str), []rune(ptn)
+	rStr, rPtn := []rune(str), []rune(ptn)
 
 	matchedCnt := 0
 
 	i := 0
-	for i < len(rStr)-len(rPath)+1 {
-		j := len(rPath) - 1
-		for j >= 0 && rStr[i+j] == rPath[j] {
+	for i < len(rStr)-len(rPtn)+1 {
+		j := len(rPtn) - 1
+		for j >= 0 && rStr[i+j] == rPtn[j] {
 			j--
 		}
 
 		if j == -1 {
 			matchedCnt++
 			i++
-		} else if pos := matchedPos(rStr[i+j], rPath); pos < j {
+		} else if pos := matchedPos(rStr[i+j], rPtn); pos < j {
 			i = i + (j - pos)
 		} else {
 			i++
